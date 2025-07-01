@@ -16,7 +16,7 @@ app.use(express.json());
 initializeDatabase();
 
 const corsOptions = {
-  origin: "https://planora-backend-lime.vercel.app",
+  origin: ["http://localhost:3000", "https://planora-backend-lime.vercel.app"],
   credentials: true,
   optionSuccessStatus: 200,
 };
