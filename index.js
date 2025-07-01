@@ -18,7 +18,7 @@ initializeDatabase();
 const corsOptions = {
   origin: [
     "http://localhost:3000",
-    "https://planora-frontend.vercel.app/",
+    "https://planora-frontend.vercel.app",
     "https://planora-backend-lime.vercel.app",
   ],
   credentials: true,
