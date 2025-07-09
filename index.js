@@ -165,8 +165,10 @@ app.post("/user/login", async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ message: "Missing email or password" });
     }
-    const user = await User.findOne({ email, password });
-    if (user) {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    } else if (user.password === password) {
       const token = jwt.sign(
         { name: user.name, email: user.email },
         JWT_SECRET,
@@ -174,7 +176,7 @@ app.post("/user/login", async (req, res) => {
       );
       res.status(200).json({ message: "Login Successful", token });
     } else {
-      return res.status(401).json({ message: "User not found" });
+      return res.status(401).json({ message: "Incorrect Password" });
     }
   } catch (error) {
     res
